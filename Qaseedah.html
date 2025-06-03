@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qaseedah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter as per the link tag */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #f8f8f8;
+            color: #555;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 30px 0;
+            border-bottom: 3px solid #81d4fa;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex; /* Flexbox for navigation items */
+            justify-content: center; /* Center navigation items */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            border-radius: 0 0 12px 12px; /* Rounded bottom corners for nav */
+            /* Removed margin-top from previous version as it was not in the new provided nav structure */
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: #4dd0e1;
+            color: #fff;
+            border-color: #4dd0e1;
+        }
+
+        /* Main Content Container Styles */
+        .container {
+            width: 85%;
+            max-width: 960px; /* Max-width for better readability on large screens */
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            color: #333;
+            text-align: center;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 20px 0;
+            position: relative; /* Changed from fixed to relative for better content flow */
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+            border-top: 3px solid #81d4fa;
+            margin-top: 50px; /* Add space above footer */
+            border-radius: 12px 12px 0 0; /* Rounded top corners for footer */
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 3em;
+            color: #0277bd;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2, p {
+            text-align: center;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        p.important-note {
+            color: #66bb6a;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        /* Button Styles (General) */
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            background-color: #66bb6a;
+            color: #fff;
+            font-size: 1.1em;
+            margin: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05);
+        }
+
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            position: fixed; /* Keep fixed position for theme toggle */
+            top: 15px;
+            right: 15px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #ffca28;
+            color: #333;
+            font-size: 0.9em;
+            z-index: 1000;
+            border: 1px solid #f9a825;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            background-color: #f9a825;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #303030;
+            color: #eee;
+        }
+
+        body.dark-mode header {
+            background-color: #424242;
+            color: #bbdefb;
+            border-bottom-color: #64b5f6;
+        }
+
+        body.dark-mode nav {
+            background-color: #212121;
+            border-bottom-color: #424242;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode nav a {
+            color: #90caf9;
+            border-color: #616161;
+        }
+
+        body.dark-mode nav a:hover {
+            background-color: #64b5f6;
+            color: #212121;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .container {
+            background-color: #424242;
+            color: #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode h1 {
+            color: #bbdefb;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode h2,
+        body.dark-mode p {
+            color: #ddd;
+        }
+
+        body.dark-mode p.important-note {
+            color: #a5d6a7;
+        }
+
+        body.dark-mode button { /* Applies to all buttons in dark mode */
+            background-color: #81c784;
+            color: #212121;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode footer {
+            background-color: #424242;
+            color: #bbdefb;
+            border-top-color: #64b5f6;
+        }
+
+        /* Feedback Form Modal Styles */
+        #feedback-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1001;
+            text-align: left;
+            color: #333;
+            width: 90%;
+            max-width: 500px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+        }
+
+        body.dark-mode #feedback-form {
+            background-color: #303030;
+            color: #eee;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            border-color: #555;
+        }
+
+        #feedback-form h2 { /* Changed from h3 to h2 as per new code */
+            text-align: center;
+            color: #0277bd;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        body.dark-mode #feedback-form h2 {
+            color: #bbdefb;
+        }
+
+        #feedback-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        body.dark-mode #feedback-form label {
+            color: #eee;
+        }
+
+        #feedback-text {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        body.dark-mode #feedback-text {
+            border-color: #777;
+            background-color: #424242;
+            color: #eee;
+        }
+
+        /* Feedback form specific buttons */
+        #feedback-form button {
+            background-color: #03a9f4; /* Blue color for feedback form buttons */
+            color: white;
+            margin-right: 10px;
+        }
+
+        #feedback-form button:hover {
+            background-color: #0288d1;
+        }
+
+        body.dark-mode #feedback-form button {
+            background-color: #4fc3f7;
+            color: #212121;
+        }
+
+        body.dark-mode #feedback-form button:hover {
+            background-color: #03a9f4;
+        }
+
+        /* Basic Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            nav a {
+                padding: 8px 15px;
+                margin: 5px;
+                font-size: 0.9em;
+            }
+
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                width: calc(100% - 20px);
+                margin: 5px auto;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle-button">Dark Mode</button>
+
+    <header>
+        <h1>Qaseedah</h1>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="Quran.html">Quran</a>
+            <a href="Qaseedah.html">Qaseedah</a>
+            <a href="suppourted by.html">Supported By</a>
+            <button id="feedbackBtn">Tell Us What You Think!</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <p style="font-size: 1.2em;">Hey there! Our special Qaseedah section is like a surprise gift we're still wrapping up for you. It's not ready just yet, but we're working hard to make it amazing!</p>
+        <h2>Listen to Beautiful Sounds</h2>
+        <p class="important-note">Click the buttons below to visit some cool websites where you can already listen to wonderful Islamic music. Think of it as a sneak peek while you wait!</p>
+        <button type="button" onclick="window.location.href='http://www.assajda.com/en/anasheed/'">Visit Assajda</button>
+        <button type="button" onclick="window.location.href='https://islamicmusichub.com'">Go to Islamic Music Hub</button>
+        <button type="button" onclick="window.location.href='https://pixabay.com/music/search/islamic/'">Check out Pixabay Music</button>
+       <h3>top best qaseedah writer</h3>
+        <p>For the best Qaseedah, we recommend visiting Sami Yusuf's official website and YouTube channel. He is a renowned artist known for his beautiful Islamic music.</p>
+        <button type="button" onclick="window.location.href='http://www.assajda.com/en/sami-yusuf-117.html'">Visit best of sami sami-yusuf</button>
+        <button type="button" onclick="window.location.href='https://www.youtube.com/@SamiYusuf'">Visit Sami Yusuf YouTube Channel</button>
+        </button>
+    </div>
+
+    <footer>
+        We appreciate your patience! Stay tuned for more!
+    </footer>
+
+    <div id="feedback-form">
+        <h2>Share Your Ideas!</h2>
+        <label for="feedback-text">What kind of Qaseedah would you love to see here?</label>
+        <textarea id="feedback-text" rows="5" cols="30" placeholder="Tell us your thoughts!"></textarea>
+        <div style="text-align: right;">
+            <button type="button" onclick="submitFeedback()">Send Your Awesome Ideas!</button>
+            <button type="button" onclick="closeFeedbackForm()">Maybe Later</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+
+            // Theme Toggle Functionality
+            function toggleDarkMode() {
+                body.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode); // Save theme preference
+                themeButton.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode'; // Update button text
+            }
+
+            // Apply saved theme on load
+            const savedTheme = localStorage.getItem('darkMode');
+            if (savedTheme === 'true') {
+                body.classList.add('dark-mode');
+                themeButton.textContent = 'Light Mode'; // Set button text immediately if dark mode is active
+            } else {
+                themeButton.textContent = 'Dark Mode';
+            }
+
+            themeButton.addEventListener('click', toggleDarkMode);
+
+            // Feedback form event listeners
+            document.getElementById('feedbackBtn').addEventListener('click', function() {
+                document.getElementById('feedback-form').style.display = 'block';
+            });
+        });
+
+        function closeFeedbackForm() {
+            document.getElementById('feedback-form').style.display = 'none';
+            document.getElementById('feedback-text').value = ''; // Clear textarea on close
+        }
+
+        function submitFeedback() {
+            const feedback = document.getElementById('feedback-text').value.trim(); // Trim whitespace
+            if (feedback) {
+                // In a real application, this feedback would be sent to a server.
+                // For this example, we'll use an alert.
+                // console.log('Feedback Submitted:', feedback);
+                alert('Thanks for your amazing feedback: ' + feedback);
+                closeFeedbackForm();
+            } else {
+                alert('Please enter your feedback before submitting.');
+            }
+        }
+    </script>
+</body>
+</html>

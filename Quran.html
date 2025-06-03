@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter as per the link tag */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #f8f8f8;
+            color: #555;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 30px 0;
+            border-bottom: 3px solid #81d4fa;
+            border-radius: 0 0 12px 12px; /* Rounded bottom corners for header */
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex; /* Flexbox for navigation items */
+            justify-content: center; /* Center navigation items */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: #4dd0e1;
+            color: #fff;
+            border-color: #4dd0e1;
+        }
+
+        /* Main Content Container Styles */
+        .container {
+            width: 85%;
+            max-width: 960px; /* Max-width for better readability on large screens */
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            color: #333;
+            text-align: center;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 20px 0;
+            position: relative; /* Changed from fixed to relative for better content flow */
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+            border-top: 3px solid #81d4fa;
+            margin-top: 50px; /* Add space above footer */
+            border-radius: 12px 12px 0 0; /* Rounded top corners for footer */
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 3em;
+            color: #0277bd;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2, p {
+            text-align: center;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        p.header-note { /* Specific style for the header paragraph */
+            color: #555; /* Default color */
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto 20px auto; /* Center it and add space below */
+        }
+
+        p.important-note {
+            color: #66bb6a;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        /* Button Styles (General) */
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            background-color: #66bb6a;
+            color: #fff;
+            font-size: 1.1em;
+            margin: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05);
+        }
+
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            position: fixed; /* Keep fixed position for theme toggle */
+            top: 15px;
+            right: 15px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #ffca28;
+            color: #333;
+            font-size: 0.9em;
+            z-index: 1000;
+            border: 1px solid #f9a825;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theme-toggle:hover {
+            background-color: #f9a825;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #303030;
+            color: #eee;
+        }
+
+        body.dark-mode header {
+            background-color: #424242;
+            color: #bbdefb;
+            border-bottom-color: #64b5f6;
+        }
+
+        body.dark-mode nav {
+            background-color: #212121;
+            border-bottom-color: #424242;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode nav a {
+            color: #90caf9;
+            border-color: #616161;
+        }
+
+        body.dark-mode nav a:hover {
+            background-color: #64b5f6;
+            color: #212121;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .container {
+            background-color: #424242;
+            color: #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode h1 {
+            color: #bbdefb;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode h2,
+        body.dark-mode p {
+            color: #ddd;
+        }
+        
+        body.dark-mode p.header-note {
+            color: #ccc; /* Lighter color for header note in dark mode */
+        }
+
+        body.dark-mode p.important-note {
+            color: #a5d6a7;
+        }
+
+        body.dark-mode button { /* Applies to all buttons in dark mode */
+            background-color: #81c784;
+            color: #212121;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode footer {
+            background-color: #424242;
+            color: #bbdefb;
+            border-top-color: #64b5f6;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            nav a {
+                padding: 8px 15px;
+                margin: 5px;
+                font-size: 0.9em;
+            }
+
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                width: calc(100% - 20px);
+                margin: 5px auto;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle-button">Dark Mode</button>
+
+    <header>
+        <h1>SORRY!</h1>
+        <p class="header-note">We are currently unsupported by recitation and others.
+            but you can enjoy by using our supported website to listen to the Quran</p>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="Quran.html">Quran</a>
+            <a href="Qaseedah.html">Qaseedah</a>
+            <a href="suppourted by.html">Supported By</a>
+        </nav>
+    </header>
+
+    <h2>To read or listen</h2>
+    <p class="important-note" style="color:#0af816;">Click the button below to listen to the Quran recitation</p>
+    <button type="button" onclick="window.location.href='https://qurancentral.com/'">Click this to listen</button>
+
+    <div class="container">
+        <h1>Quran</h1>
+        <p>
+            Quran is the holy book of Islam. It is the word of God as revealed to the Prophet Muhammad (PBUH)
+            through the Angel Gabriel (Jibril) over a period of approximately 23 years.
+            The Quran is written in Arabic and is considered the final revelation from God to humanity,
+            following previous scriptures such as the Torah and the Bible.
+            The Quran is divided into chapters called Surahs, which are then divided into verses called Ayahs.
+            The Quran is recited and memorized by Muslims all over the world, and is considered the ultimate source of guidance for all aspects of life.
+        </p>
+        <p>
+            It covers various topics including theology, morality, law, and guidance for personal conduct.
+            The Quran is also known for its literary beauty and eloquence, and is often recited in a melodious manner during prayers and other occasions.
+            Muslims believe that the Quran is the literal word of God, and it is recited in Arabic during prayers and other religious rituals.
+            It is also memorized by millions of Muslims around the world, and is considered a source of spiritual guidance and comfort.
+            The Quran emphasizes the importance of faith, prayer, charity, and good deeds, and encourages believers to seek knowledge and understanding.
+        </p>
+    </div>
+
+    <footer>
+        <p>&copy; supported by quran central "2025 Islamic.com"</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeButton = document.getElementById('theme-toggle-button');
+            const body = document.body;
+
+            // Theme Toggle Functionality
+            function toggleDarkMode() {
+                body.classList.toggle('dark-mode');
+                const isDarkMode = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode); // Save theme preference
+                themeButton.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode'; // Update button text
+            }
+
+            // Apply saved theme on load
+            const savedTheme = localStorage.getItem('darkMode');
+            if (savedTheme === 'true') {
+                body.classList.add('dark-mode');
+                themeButton.textContent = 'Light Mode'; // Set button text immediately if dark mode is active
+            } else {
+                themeButton.textContent = 'Dark Mode';
+            }
+
+            themeButton.addEventListener('click', toggleDarkMode);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supported By</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #f8f8f8;
+            color: #555;
+        }
+
+        header {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 30px 0;
+            border-bottom: 3px solid #81d4fa;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1em;
+        }
+
+        nav a:hover {
+            background-color: #4dd0e1;
+            color: #fff;
+            border-color: #4dd0e1;
+        }
+
+        .container {
+            width: 85%;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            color: #333;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+            border-top: 3px solid #81d4fa;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #0277bd;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2, p {
+            text-align: center;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        p.important-note {
+            color: #66bb6a;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            background-color: #66bb6a;
+            color: #fff;
+            font-size: 1.1em;
+            margin: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #ffca28;
+            color: #333;
+            font-size: 0.9em;
+            z-index: 1000;
+            border: 1px solid #f9a825;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: #f9a825;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        body.dark-mode {
+            background-color: #303030;
+            color: #eee;
+        }
+
+        body.dark-mode header {
+            background-color: #424242;
+            color: #bbdefb;
+            border-bottom-color: #64b5f6;
+        }
+
+        body.dark-mode nav {
+            background-color: #212121;
+            border-bottom-color: #424242;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode nav a {
+            color: #90caf9;
+            border-color: #616161;
+        }
+
+        body.dark-mode nav a:hover {
+            background-color: #64b5f6;
+            color: #212121;
+            border-color: #64b5f6;
+        }
+
+        body.dark-mode .container {
+            background-color: #424242;
+            color: #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode h1 {
+            color: #bbdefb;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode h2,
+        body.dark-mode p {
+            color: #ddd;
+        }
+
+        body.dark-mode p.important-note {
+            color: #a5d6a7;
+        }
+
+        body.dark-mode button {
+            background-color: #81c784;
+            color: #212121;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode footer {
+            background-color: #424242;
+            color: #bbdefb;
+            border-top-color: #64b5f6;
+        }
+
+        #feedback-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            text-align: left;
+            color: #333;
+        }
+
+        body.dark-mode #feedback-form {
+            background-color: #303030;
+            color: #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        #feedback-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        body.dark-mode #feedback-form label {
+            color: #eee;
+        }
+
+        #feedback-text {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+        }
+
+        body.dark-mode #feedback-text {
+            border-color: #777;
+            background-color: #424242;
+            color: #eee;
+        }
+
+        #feedback-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #03a9f4;
+            color: white;
+            font-size: 1em;
+            margin-right: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #feedback-form button:hover {
+            background-color: #0288d1;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode #feedback-form button {
+            background-color: #4fc3f7;
+            color: #212121;
+        }
+
+        body.dark-mode #feedback-form button:hover {
+            background-color: #03a9f4;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="theme-toggle-button">Dark Mode</div>
+    <header>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="Quran.html">Quran</a>
+            <a href="Qaseedah.html">Qaseedah</a>
+            <a href="suppourted by.html">Supported By</a>
+        </nav>
+        <h1>islamic.com is supported by</h1>
+    </header>
+    <div class="container">
+        <p>
+            Our website is primarily supported by Quran Central, Assajda, Islamic Music Hub, and Pixabay Music.
+            We extend our special thanks to Quran Central, Assajda, Islamic Music Hub, and Pixabay Music for their support.
+            We are excited to continuously improve our website, and as a team, we will enhance it with the help of these external resources.
+            Our main focus is to give full appreciation to our external and friendly websites.  In the future, we are ready to upgrade our platform. We are excited to launch it – and we hope you are too!
+        </p>
+        <h2>Why We Exist</h2>
+        <p>
+            We are the people who aim to show you "the way of life," as we mention on our <a href="Home.html">homepage</a>. So remember who you follow: the guidance of our Prophet and our God. Remember, if you are a Muslim, follow "the way of life."
+            We also have a humble request: as Muslims, donations such as "zakah" and "sadakah," which are pillars of Islam, are a means to reach Paradise. Our donation options can be found on the Quran Central and Islamic Music Hub websites. Remember, the key to Paradise will not come to you; you must strive for it by performing good deeds. Jazakallah Khair.
+        </p>
+    </div>
+    <div id="feedback-form">
+        <h3>Give us your feedback!</h3>
+        <label for="feedback-text">Your Feedback:</label>
+        <textarea id="feedback-text" rows="4" cols="50"></textarea><br>
+        <button onclick="sendFeedback()">Submit Feedback</button>
+    </div>
+    <footer>
+        Supported by Quran Central, Assajda, Islamic Music Hub, Pixabay Music
+    </footer>
+
+    <script>
+        const themeToggleButton = document.getElementById('theme-toggle-button');
+        const body = document.body;
+        const feedbackForm = document.getElementById('feedback-form');
+
+        themeToggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            themeToggleButton.textContent = body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+        });
+
+        function sendFeedback() {
+            const feedbackText = document.getElementById('feedback-text').value;
+            if (feedbackText.trim() !== "") {
+                alert("Thank you for your feedback!");
+                feedbackForm.style.display = 'none';
+                document.getElementById('feedback-text').value = ''; // Clear the textarea
+            } else {
+                alert("Please enter your feedback.");
+            }
+        }
+    </script>
+</body>
+</html>

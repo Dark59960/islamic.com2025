@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic.com - Your Guide to Islam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Inter', sans-serif; /* Changed to Inter as per instructions */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #f8f8f8;
+            color: #555;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 30px 0;
+            border-bottom: 3px solid #81d4fa;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex; /* Flexbox for navigation items */
+            justify-content: center; /* Center navigation items */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+            border-radius: 0 0 12px 12px; /* Rounded bottom corners for nav */
+        }
+
+        nav a,
+        nav button {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px 10px; /* Adjusted margin for better spacing */
+            border-radius: 25px; /* Rounded corners for nav links/buttons */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1em;
+            border: none; /* Remove default button border */
+            background-color: transparent; /* Default transparent background for links */
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            background-color: #4dd0e1;
+            color: #fff;
+        }
+
+        nav button {
+            background-color: #66bb6a; /* Specific style for feedback button */
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for buttons */
+        }
+
+        nav button:hover {
+            background-color: #4caf50;
+            transform: scale(1.05); /* Slight scale effect on hover */
+        }
+
+        /* Main Content Container Styles */
+        .container {
+            width: 85%;
+            max-width: 960px; /* Max-width for better readability on large screens */
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            color: #333;
+            text-align: center;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #e1f5fe;
+            color: #0277bd;
+            padding: 20px 0;
+            position: relative; /* Relative positioning to flow with content */
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+            border-top: 3px solid #81d4fa;
+            margin-top: 50px; /* Space above footer */
+            border-radius: 12px 12px 0 0; /* Rounded top corners for footer */
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 2.5em;
+            color: #0277bd;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #0277bd;
+            margin-bottom: 15px;
+        }
+
+        h2, p {
+            text-align: center;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        p.important-note {
+            color: #66bb6a;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #ffca28;
+            color: #333;
+            font-size: 0.9em;
+            z-index: 1000;
+            border: 1px solid #f9a825;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for theme toggle */
+        }
+
+        .theme-toggle:hover {
+            background-color: #f9a825;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #303030;
+            color: #eee;
+        }
+
+        body.dark-mode header {
+            background-color: #424242;
+            color: #bbdefb;
+            border-bottom-color: #64b5f6;
+        }
+
+        body.dark-mode nav {
+            background-color: #212121;
+            border-bottom-color: #424242;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode nav a {
+            color: #90caf9;
+        }
+
+        body.dark-mode nav a:hover {
+            background-color: #64b5f6;
+            color: #212121;
+        }
+
+        body.dark-mode nav button {
+            background-color: #81c784;
+            color: #212121;
+        }
+
+        body.dark-mode nav button:hover {
+            background-color: #4caf50;
+        }
+
+        body.dark-mode .container {
+            background-color: #424242;
+            color: #eee;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        body.dark-mode h1 {
+            color: #bbdefb;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        body.dark-mode h2,
+        body.dark-mode p {
+            color: #ddd;
+        }
+
+        body.dark-mode p.important-note {
+            color: #a5d6a7;
+        }
+
+        body.dark-mode footer {
+            background-color: #424242;
+            color: #bbdefb;
+            border-top-color: #64b5f6;
+        }
+
+        /* Feedback Form Modal Styles */
+        #feedback-form {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Stronger shadow for modal */
+            z-index: 1001; /* Higher z-index to be on top */
+            text-align: left;
+            color: #333;
+            width: 90%; /* Responsive width */
+            max-width: 500px; /* Max width for larger screens */
+            box-sizing: border-box; /* Include padding in width */
+            border: 1px solid #ddd; /* Subtle border */
+        }
+
+        body.dark-mode #feedback-form {
+            background-color: #303030;
+            color: #eee;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            border-color: #555;
+        }
+
+        #feedback-form h3 {
+            text-align: center;
+            color: #0277bd;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        body.dark-mode #feedback-form h3 {
+            color: #bbdefb;
+        }
+
+        #feedback-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        body.dark-mode #feedback-form label {
+            color: #eee;
+        }
+
+        #feedback-text {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            color: #333;
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 100px; /* Minimum height for textarea */
+        }
+
+        body.dark-mode #feedback-text {
+            border-color: #777;
+            background-color: #424242;
+            color: #eee;
+        }
+
+        #feedback-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #03a9f4;
+            color: white;
+            font-size: 1em;
+            margin-right: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #feedback-form button:hover {
+            background-color: #0288d1;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode #feedback-form button {
+            background-color: #4fc3f7;
+            color: #212121;
+        }
+
+        body.dark-mode #feedback-form button:hover {
+            background-color: #03a9f4;
+            transform: scale(1.05);
+        }
+
+        /* Modal Backdrop */
+        .modal-backdrop {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 1000; /* Below the modal, above other content */
+        }
+
+        /* Basic Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            nav a,
+            nav button {
+                padding: 8px 15px;
+                margin: 5px;
+                font-size: 0.9em;
+            }
+
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column; /* Stack nav items vertically on very small screens */
+            }
+
+            nav a,
+            nav button {
+                width: calc(100% - 20px); /* Full width for nav items */
+                margin: 5px auto;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="theme-toggle-button">Dark Mode</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="Qaseedah.html">Qaseedah</a>
+        <a href="Quran.html">Recitations</a>
+        <a href="suppourted by.html">Supported By</a>
+        <button id="feedback-button">Feedback</button>
+    </nav>
+
+    <header>
+        <h1>Welcome to Islamic.com</h1>
+    </header>
+
+    <div class="container">
+        <p>
+            This website is a part of the Quran Central web app. Our mission is to provide a platform for people interested in learning about Islam and the Quran. We strive to offer the best information about Islam, which we define as "A Life with Allah and His Messenger."
+        </p>
+        <p>
+            With the support of Quran Central, we are continuously improving Islamic.com. We extend our gratitude to Quran Central for providing valuable resources about Islam and the Quran. Our main message is: "Stay connected with Islamic.com & Quran Central."
+        </p>
+        <p>
+            We welcome your feedback. Please use the feedback button to share your thoughts and suggestions.
+        </p>
+
+        <h2>Our Mission</h2>
+        <p>
+            To provide a comprehensive platform for learning about Islam and the Quran.
+        </p>
+
+        <h2>Our Vision</h2>
+        <p>
+            To be the leading source of Islamic knowledge and resources online.
+        </p>
+
+        <h2>Our Values</h2>
+        <p>
+            Integrity, Respect, and Community.
+        </p>
+
+        <h2>Our Team</h2>
+        <p>
+            We are a dedicated team of individuals passionate about sharing the teachings of Islam.
+            Our team comprises scholars, educators, and technology experts working collaboratively
+            to create a valuable and accessible resource for all users.
+            We are committed to providing accurate, reliable, and engaging content.
+        </p>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div id="feedback-form">
+        <h3>Send us your Feedback!</h3>
+        <label for="feedback-text">Your Feedback:</label>
+        <textarea id="feedback-text" rows="5" placeholder="Enter your feedback here..."></textarea>
+        <div style="text-align: right;">
+            <button id="submit-feedback">Submit</button>
+            <button id="close-feedback">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Islamic.com - Supported by Quran Central</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle-button');
+            const feedbackButton = document.getElementById('feedback-button');
+            const feedbackForm = document.getElementById('feedback-form');
+            const closeFeedbackButton = document.getElementById('close-feedback');
+            const submitFeedbackButton = document.getElementById('submit-feedback');
+            const feedbackText = document.getElementById('feedback-text');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+
+            // Function to show the feedback form modal
+            const showFeedbackForm = () => {
+                feedbackForm.style.display = 'block';
+                modalBackdrop.style.display = 'block';
+            };
+
+            // Function to hide the feedback form modal
+            const hideFeedbackForm = () => {
+                feedbackForm.style.display = 'none';
+                modalBackdrop.style.display = 'none';
+                feedbackText.value = ''; // Clear textarea on close
+            };
+
+            // Theme Toggle Functionality
+            themeToggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeToggleButton.textContent = 'Light Mode';
+                } else {
+                    themeToggleButton.textContent = 'Dark Mode';
+                }
+            });
+
+            // Feedback Button click event to show the form
+            feedbackButton.addEventListener('click', showFeedbackForm);
+
+            // Close Feedback Button click event to hide the form
+            closeFeedbackButton.addEventListener('click', hideFeedbackForm);
+
+            // Modal Backdrop click event to hide the form
+            modalBackdrop.addEventListener('click', hideFeedbackForm);
+
+            // Submit Feedback Button click event
+            submitFeedbackButton.addEventListener('click', () => {
+                const feedbackContent = feedbackText.value.trim();
+                if (feedbackContent) {
+                    // Replace alert with a custom message box or a temporary message on the page
+                    // For this example, we'll just log to console and hide the form.
+                    // In a real application, you might send this feedback to a server.
+                    console.log('Feedback Submitted:', feedbackContent);
+                    // You could add a temporary message here like:
+                    // const messageDiv = document.createElement('div');
+                    // messageDiv.textContent = 'Thank you for your feedback!';
+                    // messageDiv.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1002;';
+                    // document.body.appendChild(messageDiv);
+                    // setTimeout(() => messageDiv.remove(), 3000); // Remove message after 3 seconds
+
+                    alert('Thank you for your feedback!\n\n"' + feedbackContent + '"'); // Using alert as per previous code, but ideally replace with custom modal
+                    hideFeedbackForm(); // Hide the form after submission
+                } else {
+                    alert('Please enter your feedback before submitting.'); // Using alert as per previous code, but ideally replace with custom modal
+                }
+            });
+        });
+    </script>
+</body>
+</html>
